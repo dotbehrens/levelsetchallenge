@@ -1,10 +1,13 @@
 import * as React from 'react';
-import { Card } from '@mui/material';
-import { increaseViewCount, getViewCount, getCatList } from '../editCatFunctions'
+import { Card, Typography } from '@mui/material';
+import { increaseViewCount, getViewCount, getCatList, editCatName } from '../editCatFunctions'
 import Button from '@mui/material/Button';
 
 export function CatListItem(props) {
-
+    console.log('catlist', props.index)
+    const catName = props.catList[props.index].name
+    const catImage = props.catList[props.index].thumbnail_url
+    const catBirthDate = props.catList[props.index].birthdate
 
     const handleSelect = () => {
 
@@ -15,7 +18,7 @@ export function CatListItem(props) {
 
         return handleSelectCat
             .then((catList) => props.setCatList(catList), err => console.error('err', err))
-            .then(() => props.setSelectedCat(props.cat), err => console.log('error1', err))
+            .then(() => props.setSelectedCat(props.index), err => console.log('error1', err))
             .catch(err => console.log('thisdidnotwork15'))
     };
     const formatDate = (date) => {
@@ -29,11 +32,11 @@ export function CatListItem(props) {
         <Card onClick={() => handleSelect()} style={{ alignSelf: ' left', width: 500, height: 200, padding: 30, raised: 'true' }} variant="outlined">
             <div style={{ margin: "auto", display: "flex" }}>
                 <div >
-                    <img src={props.cat.thumbnail_url} alt={props.cat.name} width="100" height="100" />
+                    <img src={catImage} alt={catName} width="100" height="100" />
                 </div>
                 <div>
-                    <Button >{props.cat.name} </Button>
-                    <h3>{formatDate(props.cat.birthdate)}</h3>
+                    <Typography >{catName} </Typography>
+                    <h3>{formatDate(catBirthDate)}</h3>
                 </div>
 
             </div>
