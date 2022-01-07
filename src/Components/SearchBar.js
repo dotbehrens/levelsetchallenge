@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from "react";
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
@@ -15,7 +14,6 @@ export function SearchBar(props) {
             if (cat.name.toLowerCase().includes(value.toLowerCase())) {
                 catSearchList.push(cat)
             }
-
         }))
         if (catSearchList) {
             props.setCatList(catSearchList)

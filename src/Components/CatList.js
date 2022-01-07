@@ -8,10 +8,7 @@ import { checkCatArray, getCatList } from '../editCatFunctions'
 
 export function CatList(props) {
 
-
   const cats = props.catList
-
-
 
   return (
     <div style={{ alignSelf: 'left', }}>

@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { useState, useEffect } from "react";
-
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -26,7 +25,6 @@ export function OwnerSelect(props) {
     return (
 
         <FormControl fullWidth>
-
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"

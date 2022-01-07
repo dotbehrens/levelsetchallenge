@@ -6,13 +6,11 @@ import Button from '@mui/material/Button';
 import { EditCatDetailsModal } from './EditCatDetailsModal';
 import { DeleteCatModal } from './DeleteCatModal'
 import { getViewCount, getCatList, formatDate } from '../editCatFunctions';
+
+
 export function CatDetails(props) {
 
-
-
     const cat = props.catList[props.selectedCat]
-    // console.log('catbirthdat', cat.birthdate)
-
 
     let [editCatDetailsModalOpen, setEditCatDetailsModalOpen] = useState(false);
     let [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -22,7 +20,6 @@ export function CatDetails(props) {
 
     useEffect(() => {
         if (cat) {
-
             view = getViewCount(props.catList[props.selectedCat].id)
             setViewsCount(view)
         }

@@ -1,16 +1,14 @@
 import * as React from 'react';
 import { Card, Typography } from '@mui/material';
-import { increaseViewCount, getViewCount, getCatList, editCatName, formatDate } from '../editCatFunctions'
-import Button from '@mui/material/Button';
+import { increaseViewCount, formatDate } from '../editCatFunctions'
 
 export function CatListItem(props) {
-    console.log('catlist', props.index)
+
     const catName = props.catList[props.index].name
     const catImage = props.catList[props.index].thumbnail_url
     const catBirthDate = props.catList[props.index].birthdate
 
     const handleSelect = () => {
-
         const handleSelectCat = new Promise((resolve, reject) => {
             let catList = increaseViewCount(props.cat.id)
             resolve(catList)

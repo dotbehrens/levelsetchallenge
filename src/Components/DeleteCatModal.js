@@ -17,7 +17,7 @@ export function DeleteCatModal(props) {
       .then((catList = getCatList(), err => console.log('error2')))
       .then(((props.setSelectedCat(-1)), err => console.log('err2.5')))
       .then((props.setCatList(catList), err => console.log('error3')))
-      .catch(err => console.log('thisdidnotwork'))
+      .catch(err => console.log('error with handleDelete'))
   };
 
   return (

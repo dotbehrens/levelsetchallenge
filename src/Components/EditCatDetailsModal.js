@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { useState } from "react";
 import Modal from '@mui/material/Modal';
 import Typography from "@mui/material/Typography"
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { BirthDatePicker } from './DatePicker';
 import { OwnerSelect } from './OwnerSelect';
@@ -12,13 +10,13 @@ import Grid from '@mui/material/Grid';
 
 export function EditCatDetailsModal(props) {
 
-  console.log('edit', props.catList[props.cat])
-  let cat = props.catList[props.cat]
+
 
   let newBirthDate = props.catList[props.cat].birthdate;
   let newThumbnailURL = props.catList[props.cat].thumbnail_url;
   let newName = props.catList[props.cat].name;
   let newOwnerName = props.catList[props.cat].owner_name;
+
   function setNewBirthDate(newBD) {
     newBirthDate = newBD
   }
@@ -42,14 +40,6 @@ export function EditCatDetailsModal(props) {
     return handleEdit.then(props.handleClose(), err => console.log('err1', err))
       .then(() => getCatList(), err => console.error('err2'))
       .then((catList) => props.setCatList(catList), err => console.error('err3'))
-      // .then(() => props.setSelectedCat({
-      //   birthdate: newBirthDate,
-      //   id: props.cat.id,
-      //   name: newName,
-      //   owner_name: newOwnerName,
-      //   thumbnail_url: newThumbnailURL,
-      //   views_count: props.cat.views_count
-      // }), err => console.error('err4'))
       .catch(err => console.error('this did not work 27'))
   }
 
