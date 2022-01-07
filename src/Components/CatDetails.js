@@ -51,8 +51,6 @@ export function CatDetails(props) {
         let birthdate = new Date(date)
 
         return `${birthdate.getMonth() + 1}/ ${birthdate.getUTCDay()}/ ${birthdate.getFullYear()}`
-        // birthdate.toLocaleDateString('en-US')
-
     }
     if (props.catList[props.selectedCat]) {
 
