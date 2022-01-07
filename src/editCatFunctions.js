@@ -39,59 +39,62 @@ export function editCatDetails(catIndex, newBirthDate, newThumbnailURL, newName,
 
     if (cats) {
 
-        editThumbnailURL(catIndex, newThumbnailURL, cats);
-        editCatName(catIndex, newName, cats);
-        editBirthDate(catIndex, newBirthDate, cats);
-        editOwner(catIndex, newOwnerName, cats);
+        editThumbnailURL(newThumbnailURL, cats[catIndex]);
+        editCatName(newName, cats[catIndex]);
+        editBirthDate(newBirthDate, cats[catIndex]);
+        editOwner(newOwnerName, cats[catIndex]);
     }
+    localStorage.setItem("cats", JSON.stringify(cats));
+
     return;
 }
 
-export function editThumbnailURL(catIndex, newThumbnailURL, cats) {
+export function editThumbnailURL(newThumbnailURL, cat) {
 
     if (newThumbnailURL !== null || newThumbnailURL !== undefined) {
         // check for empty string
         // check for string with no characters other than space
         if (newThumbnailURL !== "") {
-            cats[catIndex].thumbnail_url = newThumbnailURL
+            cat.thumbnail_url = newThumbnailURL
         }
     }
-    localStorage.setItem("cats", JSON.stringify(cats));
+
 }
 
-export function editCatName(catIndex, newName, cats) {
+export function editCatName(newName, cat) {
 
     if (newName !== null || newName !== undefined) {
         // check for empty string
         // check for string with no characters other than space
         if (newName !== "") {
-            cats[catIndex].name = newName
-            localStorage.setItem("cats", JSON.stringify(cats));
+
+            cat.name = newName
+
         }
     }
 
 }
-export function editBirthDate(catIndex, newBirthDate, cats) {
+export function editBirthDate(newBirthDate, cat) {
 
     if (newBirthDate !== null || newBirthDate !== undefined) {
         // check for empty string
         // check for string with no characters other than space
         if (newBirthDate !== "") {
-            cats[catIndex].birthdate = newBirthDate
+            cat.birthdate = newBirthDate
         }
     }
-    localStorage.setItem("cats", JSON.stringify(cats));
+
 }
-export function editOwner(catIndex, newOwner, cats) {
+export function editOwner(newOwner, cat) {
 
     if (newOwner !== null || newOwner !== undefined) {
         // check for empty string
         // check for string with no characters other than space
         if (newOwner !== "") {
-            cats[catIndex].owner_name = newOwner
+            cat.owner_name = newOwner
         }
     }
-    localStorage.setItem("cats", JSON.stringify(cats));
+
 }
 
 export function deleteCat(catIndex) {
