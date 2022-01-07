@@ -3,6 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import originalCats from './data.json'
+
+
+
+const saved = localStorage.getItem("cats")
+let cats = JSON.parse(saved)
+if (!cats) {
+
+  localStorage.setItem("cats", JSON.stringify(originalCats));
+
+}
 
 ReactDOM.render(
   <React.StrictMode>
