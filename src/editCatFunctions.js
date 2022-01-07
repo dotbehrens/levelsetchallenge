@@ -99,15 +99,12 @@ export function editOwner(newOwner, cat) {
 
 export function deleteCat(catIndex) {
     let cats = getCatList()
-    let newCatArray = []
+    let newCatArray = cats.filter((cat, i) => {
+        return i !== catIndex
 
-    cats.filter((cat, i) => {
-        if (i !== catIndex) {
-            newCatArray.push(cat)
-        }
     })
-    cats = newCatArray;
-    localStorage.setItem("cats", JSON.stringify(cats));
+
+    localStorage.setItem("cats", JSON.stringify(newCatArray));
 }
 
 export function formatDate(date) {

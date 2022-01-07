@@ -58,7 +58,7 @@ export function CatDetails(props) {
                 <Typography>{formatDate(cat.birthdate)}</Typography>
                 <Typography>{cat.owner_name}</Typography>
                 <Typography>Number of views: {cat.views_count}</Typography>
-                <DeleteCatModal setCatList={props.setCatList} open={deleteModalOpen} handleClose={handleDeleteModalClose} cat={props.selectedCat} setSelectedCat={props.setSelectedCat} />
+                <DeleteCatModal setCatList={props.setCatList} open={deleteModalOpen} handleClose={handleDeleteModalClose} catIndex={props.selectedCat} setSelectedCat={props.setSelectedCat} catList={props.catList} />
                 <EditCatDetailsModal setSelectedCat={props.setSelectedCat} setCatList={props.setCatList} open={editCatDetailsModalOpen} cat={props.selectedCat} handleClose={handleClose} catList={props.catList} />
                 <Button onClick={() => {
                     handleOpen();

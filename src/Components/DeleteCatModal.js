@@ -6,12 +6,12 @@ import Button from '@mui/material/Button';
 import { deleteCat, getCatList } from '../editCatFunctions'
 
 export function DeleteCatModal(props) {
-
+  console.log('prop i am', props)
   let catList = [];
-  function handleSave(catID) {
+  function handleSave() {
 
     const handleDelete = new Promise((resolve, reject) => {
-      deleteCat(props.cat.id)
+      deleteCat(props.catIndex)
     });
 
     return handleDelete.then((props.handleClose(), err => console.log('error1')))
@@ -38,11 +38,11 @@ export function DeleteCatModal(props) {
           },
         }}
       >
-        <Typography> Are you sure you want to delete {props.cat.name}?</Typography>
+        <Typography> Are you sure you want to delete {props.catList[props.catIndex].name}?</Typography>
 
         <div style={{ flexDirection: 'row', display: 'flex' }}>
           <Button onClick={() => {
-            handleSave(props.cat.id)
+            handleSave()
           }}>Delete</Button>
           <Button onClick={() => {
             props.handleClose();
