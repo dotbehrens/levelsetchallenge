@@ -11,7 +11,7 @@ import { Typography } from '@mui/material';
 function App() {
 
   const [catList, setCatList] = useState([])
-  const [selectedCat, setSelectedCat] = useState(0);
+  const [selectedCat, setSelectedCat] = useState(-1);
 
   useEffect(() => {
     let catList = getCatList();
