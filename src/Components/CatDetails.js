@@ -8,6 +8,12 @@ import { DeleteCatModal } from './DeleteCatModal'
 import { getViewCount, getCatList } from '../editCatFunctions';
 export function CatDetails(props) {
 
+
+
+    const cat = props.catList[props.selectedCat]
+    // console.log('catbirthdat', cat.birthdate)
+
+
     let [editCatDetailsModalOpen, setEditCatDetailsModalOpen] = useState(false);
     let [deleteModalOpen, setDeleteModalOpen] = useState(false);
     let [viewsCount, setViewsCount] = useState(0)
@@ -15,9 +21,9 @@ export function CatDetails(props) {
     let view;
 
     useEffect(() => {
-        if (props.selectedCat) {
+        if (cat) {
 
-            view = getViewCount(props.selectedCat.id)
+            view = getViewCount(props.catList[props.selectedCat].id)
             setViewsCount(view)
         }
         formatDate()
@@ -40,26 +46,28 @@ export function CatDetails(props) {
     }
 
     const formatDate = (date) => {
+        console.log("its my bday", date)
 
         let birthdate = new Date(date)
 
-        return birthdate.toLocaleDateString('en-US')
+        return `${birthdate.getMonth() + 1}/ ${birthdate.getUTCDay()}/ ${birthdate.getFullYear()}`
+        // birthdate.toLocaleDateString('en-US')
 
     }
-    if (props.selectedCat) {
+    if (props.catList[props.selectedCat]) {
 
         return (
 
 
             <div style={{ width: 1200, padding: 20 }}>
 
-                <img src={props.selectedCat.thumbnail_url} alt={props.selectedCat.name} width="500" height="600" padding="0" />
-                <Typography>{props.selectedCat.name}</Typography>
-                <Typography>{formatDate(props.selectedCat.birthdate)}</Typography>
-                <Typography>{props.selectedCat.owner_name}</Typography>
-                <Typography>Number of views: {props.selectedCat.views_count}</Typography>
+                <img src={cat.thumbnail_url} alt={cat.name} width="500" height="600" padding="0" />
+                <Typography>{cat.name}</Typography>
+                <Typography>{formatDate(cat.birthdate)}</Typography>
+                <Typography>{cat.owner_name}</Typography>
+                <Typography>Number of views: {cat.views_count}</Typography>
                 <DeleteCatModal setCatList={props.setCatList} open={deleteModalOpen} handleClose={handleDeleteModalClose} cat={props.selectedCat} setSelectedCat={props.setSelectedCat} />
-                <EditCatDetailsModal setSelectedCat={props.setSelectedCat} setCatList={props.setCatList} open={editCatDetailsModalOpen} cat={props.selectedCat} handleClose={handleClose} />
+                <EditCatDetailsModal setSelectedCat={props.setSelectedCat} setCatList={props.setCatList} open={editCatDetailsModalOpen} cat={props.selectedCat} handleClose={handleClose} catList={props.catList} />
                 <Button onClick={() => {
                     handleOpen();
                 }} variant="outlined">Edit</Button>

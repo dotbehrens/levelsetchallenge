@@ -11,16 +11,28 @@ import { editCatDetails, getCatList } from '../editCatFunctions';
 
 export function EditCatDetailsModal(props) {
 
+  console.log('edit', props.catList[props.cat])
+  let cat = props.catList[props.cat]
 
-  let cat = props.cat
-  const [newBirthDate, setNewBirthDate] = useState(cat.birthdate);
-  const [newThumbnailURL, setNewThumbnailURL] = useState(cat.thumbnail_url);
-  const [newName, setNewName] = useState(cat.name);
-  const [newOwnerName, setNewOwnerName] = useState(cat.owner_name);
-
-  function handleSave(catID, newBirthDate, newThumbnailURL, newName, newOwnerName) {
+  let newBirthDate = props.catList[props.cat].birthdate;
+  let newThumbnailURL = props.catList[props.cat].thumbnail_url;
+  let newName = props.catList[props.cat].name;
+  let newOwnerName = props.catList[props.cat].owner_name;
+  function setNewBirthDate(newBD) {
+    newBirthDate = newBD
+  }
+  function setNewOwnerName(newOwner) {
+    newOwnerName = newOwner
+  }
+  function setNewName(name) {
+    newName = name
+  }
+  function setNewThumbnailURL(thumbnail) {
+    newThumbnailURL = thumbnail
+  }
+  function handleSave(catIndex, newBirthDate, newThumbnailURL, newName, newOwnerName, cat) {
     const handleEdit = new Promise((resolve, reject) => {
-      editCatDetails(catID, newBirthDate, newThumbnailURL, newName, newOwnerName)
+      editCatDetails(catIndex, newBirthDate, newThumbnailURL, newName, newOwnerName, cat)
       resolve()
 
     })
@@ -29,14 +41,14 @@ export function EditCatDetailsModal(props) {
     return handleEdit.then(props.handleClose(), err => console.log('err1', err))
       .then(() => getCatList(), err => console.error('err2'))
       .then((catList) => props.setCatList(catList), err => console.error('err3'))
-      .then(() => props.setSelectedCat({
-        birthdate: newBirthDate,
-        id: props.cat.id,
-        name: newName,
-        owner_name: newOwnerName,
-        thumbnail_url: newThumbnailURL,
-        views_count: props.cat.views_count
-      }), err => console.error('err4'))
+      // .then(() => props.setSelectedCat({
+      //   birthdate: newBirthDate,
+      //   id: props.cat.id,
+      //   name: newName,
+      //   owner_name: newOwnerName,
+      //   thumbnail_url: newThumbnailURL,
+      //   views_count: props.cat.views_count
+      // }), err => console.error('err4'))
       .catch(err => console.error('this did not work 27'))
   }
 
@@ -66,6 +78,7 @@ export function EditCatDetailsModal(props) {
         <div style={{ flexDirection: 'row', display: 'flex' }}>
           <Typography>Name</Typography>
           <TextField id="outlined-basic" variant="outlined" onChange={(event) => {
+
             setNewName(event.target.value)
           }} />
         </div>
@@ -81,7 +94,7 @@ export function EditCatDetailsModal(props) {
 
         <div style={{ flexDirection: 'row', display: 'flex' }}>
           <Button onClick={() => {
-            handleSave(cat.id, newBirthDate, newThumbnailURL, newName, newOwnerName)
+            handleSave(props.cat, newBirthDate, newThumbnailURL, newName, newOwnerName)
           }}>Save</Button>
           <Button onClick={() => {
             props.handleClose();

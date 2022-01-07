@@ -24,7 +24,7 @@ export function CatList(props) {
       <div>
 
         {cats.map((cat, i) => {
-          return <CatListItem cat={cat} index={i} key={i} setSelectedCat={props.setSelectedCat} setCatList={props.setCatList} />
+          return <CatListItem cat={cat} index={i} key={i} setSelectedCat={props.setSelectedCat} setCatList={props.setCatList} catList={props.catList} />
         })}
       </div>
     </div>
