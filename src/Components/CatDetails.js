@@ -5,7 +5,7 @@ import { TextareaAutosize, Typography } from "@mui/material";
 import Button from '@mui/material/Button';
 import { EditCatDetailsModal } from './EditCatDetailsModal';
 import { DeleteCatModal } from './DeleteCatModal'
-import { getViewCount, getCatList } from '../editCatFunctions';
+import { getViewCount, getCatList, formatDate } from '../editCatFunctions';
 export function CatDetails(props) {
 
 
@@ -45,13 +45,7 @@ export function CatDetails(props) {
         setDeleteModalOpen(false)
     }
 
-    const formatDate = (date) => {
-        console.log("its my bday", date)
 
-        let birthdate = new Date(date)
-
-        return `${birthdate.getMonth() + 1}/ ${birthdate.getUTCDay()}/ ${birthdate.getFullYear()}`
-    }
     if (props.catList[props.selectedCat]) {
 
         return (

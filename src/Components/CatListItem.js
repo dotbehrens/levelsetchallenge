@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Card, Typography } from '@mui/material';
-import { increaseViewCount, getViewCount, getCatList, editCatName } from '../editCatFunctions'
+import { increaseViewCount, getViewCount, getCatList, editCatName, formatDate } from '../editCatFunctions'
 import Button from '@mui/material/Button';
 
 export function CatListItem(props) {
@@ -21,10 +21,7 @@ export function CatListItem(props) {
             .then(() => props.setSelectedCat(props.index), err => console.log('error1', err))
             .catch(err => console.log('thisdidnotwork15'))
     };
-    const formatDate = (date) => {
-        let birthdate = new Date(date)
-        return birthdate.toLocaleDateString('en-US')
-    }
+
 
 
     return (

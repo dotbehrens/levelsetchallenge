@@ -107,4 +107,11 @@ export function deleteCat(catIndex) {
     localStorage.setItem("cats", JSON.stringify(cats));
 }
 
+export function formatDate(date) {
+
+
+    let birthdate = new Date(date)
+
+    return `${birthdate.getMonth() + 1}/ ${birthdate.getUTCDate()}/ ${birthdate.getFullYear()}`
+}
 
