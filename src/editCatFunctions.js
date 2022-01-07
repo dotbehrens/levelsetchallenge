@@ -1,10 +1,15 @@
 
 
-const saved = localStorage.getItem("cats");
-let cats = JSON.parse(saved);
 
 
+
+export function getCatList() {
+    const saved = localStorage.getItem("cats");
+    let cats = JSON.parse(saved);
+    return cats;
+}
 export function getViewCount(catID) {
+    let cats = getCatList()
     if (cats) {
 
         cats.map((cat, i) => {
@@ -15,13 +20,9 @@ export function getViewCount(catID) {
         })
     }
 }
-export function getCatList() {
-    const saved = localStorage.getItem("cats");
-    let cats = JSON.parse(saved);
-    return cats;
-}
 
 export function increaseViewCount(catID) {
+    let cats = getCatList()
     let catIndex;
     cats.map((cat, i) => {
         if (cat.id === catID) {
@@ -34,6 +35,7 @@ export function increaseViewCount(catID) {
 }
 
 export function editCatDetails(catID, newBirthDate, newThumbnailURL, newName, newOwnerName) {
+    let cats = getCatList()
     if (cats) {
 
         let catIndex;
@@ -52,6 +54,7 @@ export function editCatDetails(catID, newBirthDate, newThumbnailURL, newName, ne
 }
 
 export function editThumbnailURL(catIndex, catID, newThumbnailURL) {
+    let cats = getCatList()
     if (newThumbnailURL !== null || newThumbnailURL !== undefined) {
         // check for empty string
         // check for string with no characters other than space
@@ -63,7 +66,7 @@ export function editThumbnailURL(catIndex, catID, newThumbnailURL) {
 }
 
 export function editCatName(catIndex, catID, newName) {
-
+    let cats = getCatList()
     if (newName !== null || newName !== undefined) {
         // check for empty string
         // check for string with no characters other than space
@@ -75,6 +78,7 @@ export function editCatName(catIndex, catID, newName) {
 
 }
 export function editBirthDate(catIndex, catID, newBirthDate) {
+    let cats = getCatList()
     if (newBirthDate !== null || newBirthDate !== undefined) {
         // check for empty string
         // check for string with no characters other than space
@@ -85,7 +89,7 @@ export function editBirthDate(catIndex, catID, newBirthDate) {
     localStorage.setItem("cats", JSON.stringify(cats));
 }
 export function editOwner(catIndex, catID, newOwner) {
-
+    let cats = getCatList()
     if (newOwner !== null || newOwner !== undefined) {
         // check for empty string
         // check for string with no characters other than space
@@ -97,6 +101,7 @@ export function editOwner(catIndex, catID, newOwner) {
 }
 
 export function deleteCat(catID) {
+    let cats = getCatList()
     let newCatArray = []
 
     cats.filter((cat) => {

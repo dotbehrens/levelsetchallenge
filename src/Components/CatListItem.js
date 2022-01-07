@@ -9,12 +9,14 @@ export function CatListItem(props) {
     const handleSelect = () => {
 
         const handleSelectCat = new Promise((resolve, reject) => {
-
-            increaseViewCount(props.cat.id)
-
+            let catList = increaseViewCount(props.cat.id)
+            resolve(catList)
         });
 
-        return handleSelectCat.then(catList => props.setCatList(catList)).then((props.setSelectedCat(props.cat), err => console.log('error1', err))).catch(err => console.log('thisdidnotwork15'))
+        return handleSelectCat
+            .then((catList) => props.setCatList(catList), err => console.error('err', err))
+            .then(() => props.setSelectedCat(props.cat), err => console.log('error1', err))
+            .catch(err => console.log('thisdidnotwork15'))
     };
     const formatDate = (date) => {
         let birthdate = new Date(date)
@@ -25,22 +27,16 @@ export function CatListItem(props) {
     return (
 
         <Card onClick={() => handleSelect()} style={{ alignSelf: ' left', width: 500, height: 200, padding: 30, raised: 'true' }} variant="outlined">
-
             <div style={{ margin: "auto", display: "flex" }}>
                 <div >
-
                     <img src={props.cat.thumbnail_url} alt={props.cat.name} width="100" height="100" />
                 </div>
                 <div>
-
                     <Button >{props.cat.name} </Button>
                     <h3>{formatDate(props.cat.birthdate)}</h3>
                 </div>
 
             </div>
         </Card>
-
-
-
     );
 }

@@ -17,6 +17,7 @@ function App() {
     let catList = getCatList();
     setCatList(catList)
 
+
   }, [])
 
 

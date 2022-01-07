@@ -19,22 +19,25 @@ export function EditCatDetailsModal(props) {
   const [newOwnerName, setNewOwnerName] = useState(cat.owner_name);
 
   function handleSave(catID, newBirthDate, newThumbnailURL, newName, newOwnerName) {
-    const handleEdit = new Promise(() => {
+    const handleEdit = new Promise((resolve, reject) => {
       editCatDetails(catID, newBirthDate, newThumbnailURL, newName, newOwnerName)
-
+      resolve()
 
     })
 
 
-    return handleEdit.then(props.handleClose(), err => console.log('err3', err)).then(getCatList(), err => console.error('err2')).then((catList) => props.setCatList(catList))
-      .then(props.setSelectedCat({
+    return handleEdit.then(props.handleClose(), err => console.log('err1', err))
+      .then(() => getCatList(), err => console.error('err2'))
+      .then((catList) => props.setCatList(catList), err => console.error('err3'))
+      .then(() => props.setSelectedCat({
         birthdate: newBirthDate,
         id: props.cat.id,
         name: newName,
         owner_name: newOwnerName,
         thumbnail_url: newThumbnailURL,
         views_count: props.cat.views_count
-      })).catch(err => console.error('this did not work'))
+      }), err => console.error('err4'))
+      .catch(err => console.error('this did not work 27'))
   }
 
   return (
