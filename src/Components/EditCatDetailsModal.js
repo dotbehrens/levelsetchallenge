@@ -8,6 +8,7 @@ import { BirthDatePicker } from './DatePicker';
 import { OwnerSelect } from './OwnerSelect';
 import Button from '@mui/material/Button';
 import { editCatDetails, getCatList } from '../editCatFunctions';
+import Grid from '@mui/material/Grid';
 
 export function EditCatDetailsModal(props) {
 
@@ -54,45 +55,43 @@ export function EditCatDetailsModal(props) {
 
   return (
 
-    <Modal open={props.open}>
-      <Box
+    <Modal style={{ paddingTop: 200 }} open={props.open}>
+      <Grid
         sx={{
           marginRight: 'auto',
           marginLeft: "auto",
-          padding: 30,
-          width: 300,
-          height: 300,
-          backgroundColor: 'white',
-          '&:hover': {
-            backgroundColor: 'white',
-            opacity: [0.9, 0.8, 0.7],
-          },
+          padding: 10,
+          width: 600,
+          height: 600,
+          backgroundColor: 'white'
+
+
         }}
-      >
-        <div style={{ flexDirection: 'row', display: 'flex' }}>
-          <Typography>Thumbnail URL</Typography>
-          <TextField id="outlined-basic" variant="outlined" onChange={(event) => {
+      > <Typography variant="h4" style={{ padding: 5, textAlign: 'Left', marginBottom: 7 }}>Edit Cat</Typography>
+        <Grid item xs="auto" style={{ flexDirection: 'row', display: 'flex' }}>
+          <Typography style={{ padding: 5, }} >Thumbnail URL</Typography>
+          <TextField style={{ padding: 5, }} id="outlined-basic" variant="outlined" onChange={(event) => {
             setNewThumbnailURL(event.target.value)
           }} />
-        </div>
-        <div style={{ flexDirection: 'row', display: 'flex' }}>
-          <Typography>Name</Typography>
-          <TextField id="outlined-basic" variant="outlined" onChange={(event) => {
+        </Grid>
+        <Grid style={{ flexDirection: 'row', display: 'flex', padding: 5 }}>
+          <Typography style={{ padding: 5, marginRight: 60 }}>Name</Typography>
+          <TextField style={{ padding: 5, }} id="outlined-basic" variant="outlined" onChange={(event) => {
 
             setNewName(event.target.value)
           }} />
-        </div>
-        <div style={{ flexDirection: 'row', display: 'flex' }}>
-          <Typography> Owner</Typography>
-          <OwnerSelect currentOwner={props.cat.owner_name} setNewOwnerName={setNewOwnerName} />
+        </Grid>
+        <Grid style={{ flexDirection: 'row', display: 'flex', padding: 5 }}>
+          <Typography style={{ padding: 5, marginRight: 60 }} > Owner</Typography>
+          <OwnerSelect style={{ padding: 5, }} currentOwner={props.cat.owner_name} setNewOwnerName={setNewOwnerName} />
 
-        </div>
-        <div style={{ flexDirection: 'row', display: 'flex' }}>
-          <Typography>Birth Date</Typography>
-          <BirthDatePicker currentBirthDate={newBirthDate} setNewBirthDate={setNewBirthDate} />
-        </div>
+        </Grid>
+        <Grid style={{ flexDirection: 'row', display: 'flex', padding: 5 }}>
+          <Typography style={{ padding: 5, marginRight: 35 }}>Birth Date</Typography>
+          <BirthDatePicker style={{ padding: 5, marginLeft: 30 }} currentBirthDate={newBirthDate} setNewBirthDate={setNewBirthDate} />
+        </Grid>
 
-        <div style={{ flexDirection: 'row', display: 'flex' }}>
+        <div style={{ flexDirection: 'row', display: 'flex', marginLeft: 300, marginTop: 20 }}>
           <Button onClick={() => {
             handleSave(props.cat, newBirthDate, newThumbnailURL, newName, newOwnerName)
           }}>Save</Button>
@@ -100,7 +99,7 @@ export function EditCatDetailsModal(props) {
             props.handleClose();
           }}>Cancel</Button>
         </div>
-      </Box>
+      </Grid>
     </Modal>
 
 
